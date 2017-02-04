@@ -1,6 +1,7 @@
 #!/bin/bash
 
 #Install the sparc_htm dependencies
+echo "Starting the sparc_dht_device setup..."
 sudo apt-get update
 sudo apt-get install git-core
 sudo apt-get install python-dev
@@ -85,4 +86,4 @@ echo ""
 echo "Starting wlan0 again......"
 echo ""
 sudo ifup wlan0
-echo "Setup complete....please check for failures... signular modules failing does not stop the configuration..."
+echo "Setup complete....please check for failures... singular modules failing does not stop the configuration..."
