@@ -1,0 +1,9 @@
+[Unit]
+Description=Sparc node configuration service
+     
+[Service]
+ExecStart=/usr/bin/python /home/pi/iot-devices/devices/sparc_htm/sparc_htm_rpi/application/settings/gateway/node_config.py
+     
+[Install]
+WantedBy=multi-user.target
+Alias=sparc_node_config.service

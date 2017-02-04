@@ -1,0 +1,33 @@
+# interfaces(5) file used by ifup(8) and ifdown(8)
+
+# Please note that this file is written to be used with dhcpcd
+# For static IP, consult /etc/dhcpcd.conf and 'man dhcpcd.conf'
+
+# Include files from /etc/network/interfaces.d:
+source-directory /etc/network/interfaces.d
+
+auto lo
+iface lo inet loopback
+
+iface eth0 inet manual
+
+##################################################
+#      Auto Connect to SPARC gateway wifi        #
+#    Replace "SSID" and "PASSWORD" leave the ""  #
+##################################################
+allow-hotplug wlan0
+auto wlan0
+iface wlan0 inet dhcp
+#    wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
+wpa-ap-scan 1
+wpa-scan-ssid 1
+wpa-ssid "SPARC"
+wpa-poto RSN
+wpa-pairwise CCMP
+wpa-key-mgmt WPA-PSK
+wpa-psk "SPARC1337"
+
+
+allow-hotplug wlan1
+iface wlan1 inet manual
+    wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf

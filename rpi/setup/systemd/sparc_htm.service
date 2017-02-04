@@ -1,0 +1,10 @@
+    [Unit]
+    Description=Sparc Humidity Temperature Publisher
+     
+    [Service]
+    ExecStart=/usr/bin/python /home/pi/iot-devices/devices/sparc_htm/rpi/application/main.py
+  
+     
+    [Install]
+    WantedBy=multi-user.target
+    Alias=sparc_htm.service
