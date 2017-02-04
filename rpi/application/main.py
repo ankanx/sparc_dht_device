@@ -1,10 +1,10 @@
-# Internal
 from mqtt_client import MQTTClient
 import json
 import Adafruit_DHT
 import time
 import settings.file_manager
 import payload.sensor
+
 class Main:
     def __init__(self):
         global node_settings
@@ -37,8 +37,6 @@ class Main:
 	    }
         }
         self.client.publish("SPARC/home_automation/disconnect/" + node_settings["serial_number"], json.dumps(payload))
-
-
 
 
     def publish(self):

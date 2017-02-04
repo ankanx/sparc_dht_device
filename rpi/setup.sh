@@ -15,7 +15,9 @@ echo ""
 echo ""
 echo "Moving into \"publisher\" directory......"
 echo ""
-cd application/lib/
+cd application/
+sudo mkdir lib
+cd lib/
 echo ""
 echo "Cloning repository......"
 echo ""
