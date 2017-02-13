@@ -60,7 +60,7 @@ void reconnect() {
   // Loop until we're reconnected
   while (!client.connected()) {
     Serial.print("Attempting MQTT connection...");
-    // Create a random client ID
+   
     String clientId = "SPARC_THM - ESP8266";
     clientId += String(random(0xffff), HEX);
     // Attempt to connect
@@ -71,7 +71,6 @@ void reconnect() {
       char data[190];
 
       String payload = "{\"type\": \"Temperature Humidity Sensor\",\"name\": \"demo\", \"serial_number\": "+ serial_number +", \"location\": \"demo\",\"info\":{ \"humidity\":\"float\",\"temperature\":\"float\" }";
-      //String payload = "Hej";
       payload.toCharArray(data, (payload.length() + 1));
       Serial.println(payload);
       Serial.println(payload.length());
