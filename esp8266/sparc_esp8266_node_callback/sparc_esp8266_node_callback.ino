@@ -84,23 +84,11 @@ void reconnect() {
     if (client.connect(clientId.c_str())) {
       Serial.println("connected");
       // Once connected, publish an announcement...
-      float h = dht.readHumidity();
-      float t = dht.readTemperature();
-       if (isnan(h) || isnan(t)) {
-      Serial.println("Failed to read from DHT sensor!");
-      return;
-      }
-      float hic = dht.computeHeatIndex(t, h, false);
-
-      Serial.println(h);
-      Serial.println(t);
-      int h2 = (int) h;
-      int t2 = (int) t;
  
       char data[190];
 
       String payload = "{\"type\": \"Temperature Humidity Sensor\",\"name\": \"demo\", \"serial_number\": "+ serial_number +", \"location\": \"demo\",\"info\":{ \"humidity\":\"float\",\"temperature\":\"float\" }";
-      //String payload = "Hej";
+
       payload.toCharArray(data, (payload.length() + 1));
       Serial.println(payload);
       Serial.println(payload.length());
@@ -140,17 +128,18 @@ void loop() {
   long now = millis();
   if (now - lastMsg > 2000) {
     lastMsg = now;
+    
     float h = dht.readHumidity();
     float t = dht.readTemperature();
 
     char data[150];
 
     String payload = "{\"ts\":" + (String)millis() +",\"serial_number\": "+ serial_number +",\"values\":{\"temperature\": "+ (String)t +",\"humidity\": "+(String)h+"}} ";
-    //String payload = "hej";
+  
     payload.toCharArray(data, (payload.length() + 1));
     Serial.print("Publish message: ");
     Serial.println(payload.length());
-    client.publish(topic_info, data);
+    client.publish(info_topic, data);
     Serial.println(payload);
   }
 }
